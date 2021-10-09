@@ -1,0 +1,10 @@
+Flask==1.1.1
+Flask-DotEnv
+Flask-Migrate
+Flask-Script
+Flask-MongoAlchemy
+marshmallow
+python-dotenv
+pymongo
+flask-cors
+-e .
