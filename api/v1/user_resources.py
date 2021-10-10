@@ -55,14 +55,14 @@ class LoginView(MethodView):
 
 
 class UserView(MethodView):
-    @jwt_required
+    @jwt_required()
     def get(self):
         current_user = get_jwt_identity()
         return jsonify(
             logged_in_as=current_user,
         ), OK.value
 
-    @jwt_required
+    @jwt_required()
     def post(self):
         data = request.get_json()
 
@@ -91,7 +91,7 @@ class UserView(MethodView):
             UserSchema(exclude=('password',)).dump(user)
         )
 
-    @jwt_required
+    @jwt_required()
     def put(self, user_id):
         user_id = int(user_id)
         new_user = None
@@ -128,7 +128,7 @@ class UserView(MethodView):
             UserSchema(exclude=('password',)).dump(user)
         )
 
-    @jwt_required
+    @jwt_required()
     def delete(self, user_id):
         user_id = int(user_id)
 
