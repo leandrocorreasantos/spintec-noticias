@@ -13,12 +13,11 @@ services:
             - db
         command: tail -f /dev/null
     db:
-        image: mongo
+        image: postgres
         container_name: spintec-db
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: password
         ports:
-            - "27017:27017"
-        volumes:
-            - ./data:/data/db
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: noticias
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
