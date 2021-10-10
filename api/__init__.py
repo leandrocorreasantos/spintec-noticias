@@ -4,7 +4,8 @@ import logging
 import logging.config
 from flask import Flask
 from flask_cors import CORS
-from pymongo import MongoClient
+from flask_jwt_extended import JWTManager
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -15,8 +16,8 @@ if os.path.isfile(dotenv_path):
 
 app.config.from_object(os.environ.get('CONFIG_OBJECT'))
 
-mongo = MongoClient(os.environ.get('MONGODB_URI'))
-db = mongo['noticias']
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
 
 CORS(app, resources={r"/v1/*": {"origins": "*"}})
 
